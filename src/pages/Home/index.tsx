@@ -1,8 +1,11 @@
 import React from 'react'
+import HomeSlider from '../../components/Home/HomeSlider'
 
 const Home = () => {
     return (
-        <div>Home</div>
+        <div className='w-[90%] mx-auto'>
+            <HomeSlider/>
+        </div>
     )
 }
 
