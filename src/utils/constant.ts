@@ -7,3 +7,12 @@ export interface CarouselMovies {
     overview: string;
     vote_count: number;
 }
+
+export interface MovieCard{
+    id: number;
+    poster_path: string;
+    release_date: string;
+    title: string;
+    vote_average: number;
+    original_language: string;
+}

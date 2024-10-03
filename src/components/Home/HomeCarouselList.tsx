@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CarouselMovies, tmdb_path } from '../../utils/constant';
 import { FaRegThumbsUp } from 'react-icons/fa';
 
@@ -8,18 +8,17 @@ interface CarouselListProps {
 }
 
 const HomeCarouselList: React.FC<CarouselListProps> = ({ next, carouselMovies }) => {
-    console.log(next);
-
+    const [hover, setHover] = useState<number | null>(null)
     return (
         <div>
-            <h1 className="font-bold text-xl text-red-500 py-3">Up Next</h1>
+            <h1 className="font-bold text-xl text-purple-400 mt-4">Up Next</h1>
             {
                 next.map((item, index) => (
-                    <div className="flex gap-2 py-3">
+                    <div key={index} className="flex gap-2 my-3" onMouseEnter={() => setHover(index)} onMouseLeave={() => setHover(null)} >
                         <img src={tmdb_path + carouselMovies[item]?.poster_path} className='w-[100px]' alt="" />
-                        <div className='flex flex-col justify-between py-2 px-2'>
+                        <div className='flex flex-col justify-between my-2 mx-2'>
                             <div className="leading-5">
-                                <h1>{carouselMovies[item]?.title}</h1>
+                                <h1 className={`${hover === index ? "underline" : ""}`}>{carouselMovies[item]?.title}</h1>
                                 <p className='text-md text-zinc-300 line-clamp-3'>{carouselMovies[item]?.overview}</p>
                             </div>
                             <div className="flex items-center gap-1 text-center">

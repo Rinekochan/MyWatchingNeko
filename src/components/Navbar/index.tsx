@@ -5,11 +5,11 @@ const Navbar: React.FC = () => {
         <nav className='bg-[#121212] py-2'>
             <div className="flex justify-between items-center w-[80%] mx-auto">
                 <div className="flex space-x-16">
-                    <div className="flex flex-col text-red-500">
-                        <h1 className="text-[18px] leading-4">My Watching</h1>
-                        <h1 className="text-[24px] leading-5 font-semibold">Neko</h1>
+                    <div className="flex flex-col text-purple-500">
+                        <h1 className="text-[18px] leading-4 font-semibold">My Watching</h1>
+                        <h1 className="text-[21px] leading-5 font-bold">Neko</h1>
                     </div>
-                    <button className='text-[18px] text-red-500 hover:underline'>EXPLORE</button>
+                    <button className='text-[18px] text-purple-500 hover:underline font-semibold'>EXPLORE</button>
                 </div>
                 <div className=''>
                     <input 

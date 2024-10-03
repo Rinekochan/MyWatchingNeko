@@ -11,10 +11,11 @@ export const HomeCarousel : React.FC<CarouselProps> = ({carouselMovies}) => {
         <div className="carousel-inner">
             {
                 carouselMovies.map((movie, index) => (
-                    <div className={`carousel-item ${index == 0 ? "active" : ""}`}>
+                    <div key = {index} className={`carousel-item ${index == 0 ? "active" : ""}`}>
                         <div className='relative '>
                             {/* <div className="block w-[900px] bg-red-300 aspect-[7/4]"></div> */}
                             <img src={tmdb_path + movie?.backdrop_path} className='w-full aspect-[9/5]' alt="" />
+                            <div className={`absolute w-full h-full top-0 left-0 bg-black opacity-[0.1] hover:opacity-[0.2] duration-200`}></div>
                             <div className='absolute bottom-0 h-44 w-full _carouselGradient'></div>
                         </div>
                         <div className="absolute bottom-0 flex items-end gap-4 px-4">

@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 import { baseApi } from '../../api/axiosInstance';
@@ -6,51 +5,51 @@ import { CarouselMovies } from '../../utils/constant';
 import { HomeCarousel } from './HomeCarousel';
 import HomeCarouselList from './HomeCarouselList';
 
-const HomeSlider = () => {
+const HomeSlider: React.FC = () => {
     const [carouselMovies, setCarouselMovies] = useState<CarouselMovies[]>([])
     const [selectedMovieIndex, setSelectedMovieIndex] = useState<number>(0)
     const [nextMoviesIndex, setNextMoviesIndex] = useState<number[]>([1, 2, 3])
+
     const fetchUpcoming = async () => {
         try {
             const response = await baseApi.get('/3/movie/upcoming?language=en-US&page=1')
-            console.log(response.data.results)
             setCarouselMovies(response.data.results)
         }
         catch (err) {
             console.error("Fetch upcoming movies error", err);
         }
     }
-    
+
     useEffect(() => {
         fetchUpcoming()
     }, [])
-    
-    
+
+
     useEffect(() => {
-        if(carouselMovies.length) {
+        if (carouselMovies.length) {
             const index_1 = (selectedMovieIndex + 1) % carouselMovies.length
             const index_2 = (selectedMovieIndex + 2) % carouselMovies.length
             const index_3 = (selectedMovieIndex + 3) % carouselMovies.length
-        
+
             setNextMoviesIndex([index_1, index_2, index_3])
-        }        
+        }
     }, [selectedMovieIndex])
 
     useEffect(() => {
         const myCarousel = document.getElementById("carousel")
 
-        const handleSlide = (event) => {
-            console.log(event.to);
-            setSelectedMovieIndex(event.to)
+        const handleSlide = (event: Event) => {
+            const customEvent = event as any
+            setSelectedMovieIndex(customEvent.to)
         }
-        
-        if(myCarousel) {
-            myCarousel.addEventListener('slid.bs.carousel', handleSlide)
 
+        if (myCarousel) {
+            myCarousel.addEventListener('slid.bs.carousel', handleSlide)
             return () => {
                 myCarousel.removeEventListener('slid.bs.carousel', handleSlide)
             }
         }
+        
     }, [])
 
     return (
@@ -69,7 +68,7 @@ const HomeSlider = () => {
                 </div>
             </div>
             <div className="col-4">
-                <HomeCarouselList next={nextMoviesIndex} carouselMovies={carouselMovies}/>
+                <HomeCarouselList next={nextMoviesIndex} carouselMovies={carouselMovies} />
             </div>
         </div>
     )
